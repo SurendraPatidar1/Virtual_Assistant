@@ -23,15 +23,11 @@ function wishMe() {
     }
 }
 
-// window.addEventListener('load', () => {
-//     wishMe();
-// });
-
 let speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 let recognition = new speechRecognition();
 
 recognition.onresult = (event) => {
-    let currentIndex = event.resultIndex; 
+    let currentIndex = event.resultIndex;
     let transcript = event.results[currentIndex][0].transcript;
     console.log(transcript);
     content.innerText = transcript;
@@ -40,26 +36,29 @@ recognition.onresult = (event) => {
 
 btn.addEventListener("click", () => {
     recognition.start();
-    btn.style.display="none";
-    voice.style.display="block";
-    // wishMe();
+    // speak("I'm listening...");
+    btn.style.display = "none";
+    voice.style.display = "block";
+    // wishMe(); // Optionally greet when listening
 });
 
 function takeCommand(message) {
     btn.style.display = "flex";
     voice.style.display = "none";
 
-    if (message.includes("hello") || message.includes("hi") || message.includes("hey") {
+    // Greeting Commands
+    if (message.includes("hello") || message.includes("hi") || message.includes("hey")) {
         speak("Hello Sir, what can I help you with?");
     } 
-    else if (message.includes("who are you") || message.includes("hu r u")) { // Make sure to use lowercase
+    else if (message.includes("who are you") || message.includes("hu r u")) {
         speak("I am a virtual assistant, created by Mister Surendra Sir.");
-    }    
+    } 
+    // Opening websites
     else if (message.includes("open youtube")) {
         speak("Opening YouTube ....");
         window.open("https://www.youtube.com/", "_blank");
     } 
-    else if (message.includes("open Github")) {
+    else if (message.includes("open github")) {
         speak("Opening GitHub ....");
         window.open("https://github.com/SurendraPatidar1", "_blank");
     } 
@@ -67,41 +66,48 @@ function takeCommand(message) {
         speak("Opening Instagram ....");
         window.open("https://www.instagram.com/", "_blank");
     } 
-    else if (message.includes("open gfg") || message.includes("open geeks for geeks")) {
-        speak("Opening GeeksForGeeks ....");
-        window.open("https://www.geeksforgeeks.org/", "_blank");
-    }     
     else if (message.includes("open facebook")) {
         speak("Opening Facebook ....");
         window.open("https://www.facebook.com/", "_blank");
     } 
-    else if (message.includes("open Calculator")) {
+    else if (message.includes("open google")) {
+        speak("Opening Google ....");
+        window.open("https://www.google.com/", "_blank");
+    } 
+    else if (message.includes("open news")) {
+        speak("Opening Google News ....");
+        window.open("https://news.google.com/", "_blank");
+    } 
+    // Opening apps or utilities
+    else if (message.includes("open calculator")) {
         speak("Opening Calculator ....");
-        window.open("calculator://", "_blank");
-    } 
-    else if (message.includes("open Whatsapp")) {
+        window.open("calculator://", "_blank"); // Note: some custom app URLs may not work directly in browsers
+    }
+    else if (message.includes("open whatsapp")) {
         speak("Opening WhatsApp ....");
-        window.open("whatsapp://", "_blank");
-    } 
-    else if (message.includes("open word")) {
-        speak("Opening Word ....");
-        window.open("word://", "_blank");
-    } 
+        window.open("https://web.whatsapp.com/", "_blank");
+    }
     else if (message.includes("open spotify")) {
         speak("Opening Spotify ....");
-        window.open("spotify://", "_blank");
-    } 
+        window.open("https://www.spotify.com/", "_blank");
+    }
+    // Time and Date commands
     else if (message.includes("time")) {
         let time = new Date().toLocaleTimeString(undefined, { hour: "numeric", minute: "numeric" });
-        speak(time);
+        speak("The time is " + time);
     } 
     else if (message.includes("date")) {
         let date = new Date().toLocaleDateString(undefined, { day: "numeric", month: "short" });
-        speak(date);
+        speak("Today's date is " + date);
     } 
+    // Music command
+    else if (message.includes("play music")) {
+        speak("Playing music on Spotify ....");
+        window.open("https://www.spotify.com/", "_blank"); // Open Spotify or YouTube for music
+    } 
+    // Error handling for unknown commands
     else {
-        let finalText = "This is what I found on the internet regarding " + message;
-        speak(finalText);
+        speak("Sorry, I couldn't understand. Here's what I found on the internet for " + message);
         window.open(`https://search.yahoo.com/search?fr=mcafee&type=E211US1289G0&p=${message}`);
     }
 }
