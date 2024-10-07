@@ -55,3 +55,18 @@ h1{
     box-shadow: 2px 2px 20px rgb(21,145,207),2px 2px 20px rgb(88, 115, 214);
     letter-spacing: 2px;
 }
+/* Styling for the image as a card */
+.image-card {
+    display: inline-block;
+    padding: 10px;
+    background-color: #f4f4f4; /* Background for the card effect */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for the card effect */
+    width: fit-content; /* Adjust the card width based on image size */
+}
+
+#logo {
+    height: 300px; /* Maintain a fixed height for the image */
+    width: auto; /* Keep the aspect ratio of the image */
+    border-radius: 15px; /* Rounded corners for the image */
+}
