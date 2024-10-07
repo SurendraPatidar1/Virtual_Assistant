@@ -49,7 +49,7 @@ function takeCommand(message) {
     btn.style.display = "flex";
     voice.style.display = "none";
 
-    if (message.includes("hello") || message.includes("hey")) {
+    if (message.includes("hello") || message.includes("hi") || message.includes("hey") {
         speak("Hello Sir, what can I help you with?");
     } 
     else if (message.includes("who are you") || message.includes("hu r u")) { // Make sure to use lowercase
